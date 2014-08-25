@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Liquor</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+        <script src="/bower_components/platform/platform.js"></script>
+
+        <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html">
+        <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="/bower_components/core-menu/core-menu.html">
+        <link rel="import" href="/bower_components/core-item/core-item.html">
+        <link rel="import" href="/bower_components/paper-item/paper-item.html">
+        <link rel="import" href="/bower_components/google-map/google-map.html">
+
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    </head>
+    <body fullbleed unresolved touch-action="auto">
+        <core-scaffold responsiveWidth="1000px">
+            <core-header-panel navigation flex mode="standard">
+                <core-toolbar id="nav-header">
+                    <span>Menu</span>
+                </core-toolbar>
+                <core-menu>
+                    <paper-item name="home" label="Home"></paper-item>
+                </core-menu>
+            </core-header-panel>
+            <span tool>Liquor</span>
+
+            <google-map latitude="58.882333" longitude="5.668829"></google-map>
+
+        </core-scaffold>
+    </body>
