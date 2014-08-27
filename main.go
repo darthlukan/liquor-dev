@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Radiobox/web_responders"
 	"github.com/stretchr/goweb"
 	"html/template"
@@ -10,6 +11,10 @@ import (
 	"os"
 	"path"
 	"time"
+)
+
+const (
+	escape = "\x1b"
 )
 
 var (
@@ -56,11 +61,16 @@ func main() {
 	server.Serve(listener)
 }
 
+func colorize(r *http.Request) string {
+	format := fmt.Sprintf("%s[94m %s %s[92m%s: %s[91m%s, %s[0m", escape, r.Proto, escape, r.Method, escape, r.URL, escape)
+	return format
+}
+
 type LoggedHandler struct {
 	baseHandler http.Handler
 }
 
 func (handler *LoggedHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	go log.Printf("%s Request for %s from %s", r.Method, r.RequestURI, r.RemoteAddr)
+	go log.Printf(colorize(r))
 	handler.baseHandler.ServeHTTP(w, r)
 }
