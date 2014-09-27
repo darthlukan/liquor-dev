@@ -32,15 +32,22 @@ func main() {
 	} else {
 		projectRoot = path.Join(goPath, "src", "github.com", "darthlukan", "liquor-dev")
 	}
-
+	// Move to site server
 	templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
+	//
+
+	// API Endpoints
 	goweb.Map("/", indexHandler)
 	goweb.Map("/ping", pingHandler)
+	// End API Endpoints
+
+	// Will be moved to a separate web server
 	goweb.Map("/html/***", htmlFileHandler)
 	goweb.MapStatic("/bower_components", path.Join(projectRoot, "bower_components"))
 	goweb.MapStatic("/css", path.Join(projectRoot, "css"))
 	goweb.MapStatic("/js", path.Join(projectRoot, "js"))
 	goweb.MapStatic("/img", path.Join(projectRoot, "img"))
+	// End site web server URLs
 
 	address := ":3000"
 	if port := os.Getenv("PORT"); port != "" {
